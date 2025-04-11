@@ -1,0 +1,5 @@
+requests
+dotenv
+apache-airflow==2.10.5
+apache-airflow-providers-apache-spark
+pyspark
