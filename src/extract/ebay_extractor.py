@@ -11,6 +11,7 @@ load_dotenv()
 class EbayExtractor(Extractor):
 
     def __init__(self):
+        super().__init__()
         self.token = os.getenv("EBAY_TOKEN")
         self.market_place = "EBAY_US"
 
