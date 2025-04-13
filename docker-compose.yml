@@ -22,6 +22,7 @@ x-airflow-common:
 
     - ${AIRFLOW_PROJ_DIR:-.}/src:/opt/app/src
     - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/app/data
+    - ${AIRFLOW_PROJ_DIR:-.}/.env:/opt/app/.env
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -36,6 +37,7 @@ x-spark-common:
   volumes:
     - ./src:/opt/bitnami/app/src
     - ./data:/opt/bitnami/app/data
+    - ./.env:/opt/bitnami/app/.env
   networks:
     - spark-net
 
