@@ -1,62 +1,62 @@
-# Dự án ETL (Extract, Transform, Load)
+# E-COMMERCE ETL PROJECT
 
-Dự án này thực hiện quá trình trích xuất dữ liệu từ eBay API và database, sau đó biến đổi và tải vào MinIO (S3-compatible storage)
+This project performs the ETL process by extracting data from the eBay API and a database, transforming it, and loading it into MinIO (S3-compatible storage).
 
-## Cấu trúc dự án
+## Project Structure
 
 ```
-ETL/
-├── dags/           # Chứa các DAG của Apache Airflow
-├── data/           # Thư mục lưu trữ dữ liệu
-├── docker/         # Cấu hình Docker
-├── docker-requierments/ # Yêu cầu cho Docker
-├── logs/           # Thư mục lưu log
-├── plugins/        # Các plugin tùy chỉnh
-├── scripts/        # Các script tiện ích
-├── src/            # Mã nguồn chính
-├── test/           # Thư mục chứa các test
-├── .env            # File cấu hình môi trường
-├── docker-compose.yml # Cấu hình Docker Compose
-└── requirements.txt # Các thư viện Python cần thiết
-
-## Yêu cầu hệ thống
+E-Commerce-ETL/
+├── dags/               # Contains Apache Airflow DAGs
+├── data/               # Directory for storing data
+├── docker/             # Docker configuration
+├── docker-requirements/ # Docker requirements
+├── logs/               # Directory for log files
+├── plugins/            # Custom plugins
+├── scripts/            # Utility scripts
+├── src/                # Main source code
+├── test/               # Contains test files
+├── .env                # Environment configuration file
+├── docker-compose.yml  # Docker Compose configuration
+└── requirements.txt     # Required Python libraries
+```
+## System Requirements
 
 - Python 3.x
-- Docker và Docker Compose
+- Docker and Docker Compose
 
-## Cài đặt
+## Installation
 
-1. Clone repository:
+1. Clone the repository:
 ```bash
 https://github.com/pnquang260805/E-Commerce-ETL.git
 cd ./E-Commerce-ETL
 ```
 
-2. Cài đặt các thư viện cần thiết:
+2. Install required libraries:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Cấu hình môi trường:
-Tạo file .env với các biến môi trường:
-+ EBAY_TOKEN: token của eBay API
-+ AIRFLOW_UID: ID người dùng Airflow (mặc định: 50000)
-+ AIRFLOW_GID: ID nhóm Airflow (mặc định: 50000)
-+ _AIRFLOW_WWW_USER_USERNAME: Tên người dùng Airflow
-+ _AIRFLOW_WWW_USER_PASSWORD: Mật khẩu người dùng Airflow
+3. Configure the environment: 
+Create a .env file with the following environment variables:
++ EBAY_TOKEN: Your eBay API token
++ AIRFLOW_UID: Airflow user ID (default: 50000)
++ AIRFLOW_GID: Airflow group ID (default: 50000)
++ _AIRFLOW_WWW_USER_USERNAME: Airflow Web UI username
++ _AIRFLOW_WWW_USER_PASSWORD: Airflow Web UIpassword
 
-4. Khởi động các service bằng Docker:
+4. Start services using Docker::
 ```bash
 docker-compose up -d
 ```
 
-## Sử dụng
+## Usage
 
-1. Truy cập Airflow UI:
-- Mở trình duyệt và truy cập: `http://localhost:8080`
-- Đăng nhập với tài khoản và mật khẩu đã đặt ở file .env: ```_AIRFLOW_WWW_USER_USERNAME``` và ```_AIRFLOW_WWW_USER_PASSWORD```
+1. Access the Airflow UI:
+- Open your browser and navigate to: `http://localhost:8080`
+- Log in using the username and password from the .env file:: ```_AIRFLOW_WWW_USER_USERNAME``` and ```_AIRFLOW_WWW_USER_PASSWORD```
 
-2. Kích hoạt DAG:
-- Tìm DAG cần chạy trong danh sách
-- Bật DAG bằng nút toggle
-- Chạy DAG bằng nút "Trigger DAG"
+2. Activate a DAG:
+- Find the DAG you want to run in the list
+- Enable the DAG using the toggle button
+- Run the DAG using the "Trigger DAG" button
