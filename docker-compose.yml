@@ -21,8 +21,9 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
 
     - ${AIRFLOW_PROJ_DIR:-.}/src:/opt/app/src
-    - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/app/data
-    - ${AIRFLOW_PROJ_DIR:-.}/.env:/opt/app/.env
+    - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/app/minio_data
+  env_file: # Với file .env thì phải sử dụng env_file
+    - .env
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
@@ -33,11 +34,12 @@ x-airflow-common:
 
 x-spark-common:
   &spark-common
-  image: bitnami/spark:3.5.4
+  image: bitnami/spark:3.3.0
   volumes:
     - ./src:/opt/bitnami/app/src
     - ./data:/opt/bitnami/app/data
-    - ./.env:/opt/bitnami/app/.env
+  env_file:
+    - .env
   networks:
     - spark-net
 

@@ -1,9 +1,10 @@
 import sys
 
 sys.path.append("/opt/app/src")
+sys.path.append("./src")
 
 from extract.ebay_extractor import EbayExtractor
-from load.local_loader import LocalLoader
+from load.s3_loader import S3Loader
 from transform.ebay_transformer import EbayTransform
 
 if __name__ == "__main__":
@@ -18,6 +19,6 @@ if __name__ == "__main__":
     print("=========================================================")
 
     print("\n=====================Loading Data=====================")
-    loader = LocalLoader()
+    loader = S3Loader("etl-bucket")
     loader.load(data)
     print("=========================================================")

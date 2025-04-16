@@ -60,7 +60,7 @@ class EbayTransform(Transformer):
         )
 
         processed_data = processed_data.fillna("NULL")
-
-        spark.stop()
+        print(processed_data.show(5))
+        # spark.stop()
 
         return processed_data

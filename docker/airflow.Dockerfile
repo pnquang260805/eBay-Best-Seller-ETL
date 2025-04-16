@@ -20,6 +20,11 @@ RUN DOWNLOAD_URL="https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_l
     && rm -rf "${TMP_DIR}" \
     && java --version
 
+RUN mkdir /opt/spark && \
+    mkdir /opt/spark/jars && \
+    curl -fL "https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.780/aws-java-sdk-bundle-1.12.780.jar" --output "/opt/spark/jars/aws-java-sdk-bundle-1.12.780.jar" && \
+    curl -fL "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.1/hadoop-aws-3.3.1.jar" --output "/opt/spark/jars/hadoop-aws-3.3.1.jar"
+
 
 COPY ../docker-requierments/airflow.requirements.txt .
 
