@@ -30,7 +30,7 @@ with DAG(
     description="A simple DAG to run a PySpark job using SparkSubmitOperator",
 ) as dag:
     ebay_job = SparkSubmitOperator(
-        task_id="test_id",
+        task_id="ebay-id",
         application="/opt/app/src/job/ebay_job.py",
         conn_id="etl_project",
         conf={

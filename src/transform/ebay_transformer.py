@@ -1,17 +1,18 @@
 from interface.transformer import Transformer
-from typing_extensions import override
 from utils.spark_setup import SparkSetup
+from pyspark.conf import SparkConf
 from pyspark.sql.functions import *
 
 
 class EbayTransform(Transformer):
 
-    # @override
     def transform(self, data):
+        conf = SparkConf().setAppName("Ebay_transform").setMaster("local[2]")
+
         res = data.json()
         itemSummaries = res.get("itemSummaries", [])
 
-        sparkSetup = SparkSetup("ebay_transformer")
+        sparkSetup = SparkSetup(conf)
         spark = sparkSetup.setupSpark()
         rdd = spark.sparkContext.parallelize(itemSummaries)
         df = spark.createDataFrame(rdd)

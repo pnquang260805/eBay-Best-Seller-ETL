@@ -22,6 +22,7 @@ x-airflow-common:
 
     - ${AIRFLOW_PROJ_DIR:-.}/src:/opt/app/src
     - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/app/minio_data
+    - ./docker-data/airflow-data:/opt/airflow
   env_file: # Với file .env thì phải sử dụng env_file
     - .env
   user: "${AIRFLOW_UID:-50000}:0"
@@ -52,7 +53,7 @@ services:
       POSTGRES_PASSWORD: airflow
       POSTGRES_DB: airflow
     volumes:
-      - postgres-db-volume:/var/lib/postgresql/data
+      - ./docker-data/postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s
@@ -200,7 +201,7 @@ services:
       - "9000:9000"  # Cổng mặc định cho giao diện và API của MinIO
       - "9001:9001"
     volumes:
-      - minio_data:/data  # Lưu trữ dữ liệu ở volume bên ngoài container
+      - ./docker-data/minio_data:/data  # Lưu trữ dữ liệu ở volume bên ngoài container
     environment:
       MINIO_ROOT_USER: minio       # Tên đăng nhập, tùy chọn
       MINIO_ROOT_PASSWORD: minio123  # Mật khẩu, tùy chọn
@@ -212,6 +213,3 @@ networks:
   spark-net:
     driver: bridge
 
-volumes:
-  postgres-db-volume:
-  minio_data:
