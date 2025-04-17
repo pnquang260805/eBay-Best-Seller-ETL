@@ -44,6 +44,8 @@ Create a .env file with the following environment variables:
 + AIRFLOW_GID: Airflow group ID (default: 50000)
 + _AIRFLOW_WWW_USER_USERNAME: Airflow Web UI username
 + _AIRFLOW_WWW_USER_PASSWORD: Airflow Web UIpassword
++ MINIO_ACCESS_KEY: Your MinIO access key
++ MINIO_SECRET_KEY: Your MinIO secret key
 
 4. Start services using Docker::
 ```bash
