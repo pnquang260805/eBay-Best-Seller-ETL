@@ -12,6 +12,11 @@ ENV JAVA_HOME=/home/jdk-11.0.2
 
 ENV PATH="${JAVA_HOME}/bin/:${PATH}"
 
+COPY ../docker-requierments/airflow.requirements.txt .
+
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install --no-cache-dir -r airflow.requirements.txt
+
 RUN DOWNLOAD_URL="https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz" \
     && TMP_DIR="$(mktemp -d)" \
     && curl -fL "${DOWNLOAD_URL}" --output "${TMP_DIR}/openjdk-11.0.2_linux-x64_bin.tar.gz" \
@@ -23,15 +28,7 @@ RUN DOWNLOAD_URL="https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_l
 RUN mkdir /opt/spark && \
     mkdir /opt/spark/jars && \
     curl -fL "https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.780/aws-java-sdk-bundle-1.12.780.jar" --output "/opt/spark/jars/aws-java-sdk-bundle-1.12.780.jar" && \
-    curl -fL "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.1/hadoop-aws-3.3.1.jar" --output "/opt/spark/jars/hadoop-aws-3.3.1.jar"
-
-
-COPY ../docker-requierments/airflow.requirements.txt .
-
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install --no-cache-dir -r airflow.requirements.txt
-
-COPY ../scripts scripts
-RUN chmod +x scripts
+    curl -fL "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.1/hadoop-aws-3.3.1.jar" --output "/opt/spark/jars/hadoop-aws-3.3.1.jar" && \
+    curl -fL "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.2/postgresql-42.7.2.jar" --output "/opt/spark/jars/postgresql-42.7.2.jar"
 
 USER $AIRFLOW_UID

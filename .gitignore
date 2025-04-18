@@ -7,4 +7,4 @@
 /*/.vscode
 __pycache__
 *.ipynb
-/docker-data
+docker-data/
