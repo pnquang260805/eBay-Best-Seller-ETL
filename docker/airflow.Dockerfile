@@ -12,7 +12,7 @@ ENV JAVA_HOME=/home/jdk-11.0.2
 
 ENV PATH="${JAVA_HOME}/bin/:${PATH}"
 
-COPY ../docker-requierments/airflow.requirements.txt .
+COPY ../docker-requirements/airflow.requirements.txt .
 
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --no-cache-dir -r airflow.requirements.txt
