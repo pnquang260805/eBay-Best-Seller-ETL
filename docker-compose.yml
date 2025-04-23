@@ -36,7 +36,7 @@ x-airflow-common:
 
 x-spark-common:
   &spark-common
-  image: bitnami/spark:3.3.0
+  image: bitnami/spark:3.3.2
   volumes:
     - ./src:/opt/bitnami/app/src
     - ./data:/opt/bitnami/app/data
