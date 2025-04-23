@@ -8,3 +8,5 @@
 __pycache__
 *.ipynb
 docker-data/
+*.json
+app-logs

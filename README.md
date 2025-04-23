@@ -12,7 +12,6 @@ E-Commerce-ETL/
 ├── docker-requirements/ # Docker requirements
 ├── logs/               # Directory for log files
 ├── plugins/            # Custom plugins
-├── scripts/            # Utility scripts
 ├── src/                # Main source code
 ├── test/               # Contains test files
 ├── .env                # Environment configuration file
@@ -21,7 +20,7 @@ E-Commerce-ETL/
 ```
 ## System Requirements
 
-- Python 3.x
+- Python 3.9.x
 - Docker and Docker Compose
 
 ## Installation

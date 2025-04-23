@@ -23,6 +23,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/src:/opt/app/src
     - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/app/minio_data
     - ./docker-data/airflow-data:/opt/airflow
+    - ./app-logs:/opt/app/app-logs
   env_file: # Với file .env thì phải sử dụng env_file
     - .env
   user: "${AIRFLOW_UID:-50000}:0"
@@ -206,6 +207,18 @@ services:
       MINIO_ROOT_USER: minio       # Tên đăng nhập, tùy chọn
       MINIO_ROOT_PASSWORD: minio123  # Mật khẩu, tùy chọn
     command: server --console-address ":9001" /data # set cổng 9001 để chạy
+    networks:
+      - spark-net
+
+  backend-db:
+    image: mysql:9.2.0
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: e_commerce
+    volumes:
+      - ./docker-data/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
     networks:
       - spark-net
 
