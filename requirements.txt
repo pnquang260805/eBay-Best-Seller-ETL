@@ -5,3 +5,7 @@ apache-airflow-providers-apache-spark
 pyspark==3.5.5
 boto3
 apache-airflow-providers-docker
+pytest
+pandas==1.5.1
+numpy==1.26.4
+PyArrow==4.0.0

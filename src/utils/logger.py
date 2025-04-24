@@ -4,7 +4,7 @@ import os
 
 logging.basicConfig(level=logging.DEBUG)
 
-LOG_FILE = "/opt/app/app-logs"
+LOG_FILE = "../app-logs/app.log"
 
 
 class Logging:

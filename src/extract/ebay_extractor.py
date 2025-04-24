@@ -1,9 +1,9 @@
 import requests
 import os
 
-from utils.spark_setup import SparkSetup
-from utils.logger import Logging
-from interface.extractor import Extractor
+from src.utils.spark_setup import SparkSetup
+from src.utils.logger import Logging
+from src.interface.extractor import Extractor
 
 from pyspark.conf import SparkConf
 from typing_extensions import override
@@ -20,7 +20,7 @@ class EbayExtractor(Extractor):
         super().__init__()
         self.token = os.getenv("EBAY_TOKEN")
         self.market_place = "EBAY_US"
-        conf = SparkConf.setAppName("eBay_extractor").setMaster("local[2]")
+        conf = SparkConf().setAppName("eBay_extractor").setMaster("local[2]")
         setup = SparkSetup(conf)
         self.spark = setup.setupSpark()
 
@@ -36,7 +36,8 @@ class EbayExtractor(Extractor):
             "X-EBAY-C-MARKETPLACE-ID": self.market_place,
         }
         res = requests.get(url, headers=header)
-        itemSummaries = res.get("itemSummaries", [])
-        rdd = self.spark.sparkContext.parallelize(itemSummaries)
+        data = res.json()
+        item_summaries = data.get("itemSummaries", [])
+        rdd = self.spark.sparkContext.parallelize(item_summaries)
         df = self.spark.createDataFrame(rdd)
         return df
