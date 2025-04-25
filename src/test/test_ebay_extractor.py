@@ -3,8 +3,8 @@ import sys
 import unittest
 
 from unittest.mock import MagicMock, patch
-from src.test.pyspark_testcases import PySparkTestCase
-from src.extract.ebay_extractor import EbayExtractor
+from .pyspark_testcases import PySparkTestCase
+from ..extract.ebay_extractor import EbayExtractor
 from pyspark.testing.utils import assertDataFrameEqual
 
 os.environ["PYSPARK_PYTHON"] = sys.executable

@@ -1,10 +1,10 @@
 import logging
 import functools
-import os
 
 logging.basicConfig(level=logging.DEBUG)
+logging.getLogger("py4j.clientserver").setLevel(logging.WARNING)
 
-LOG_FILE = "../app-logs/app.log"
+LOG_FILE = "app-logs/app.log"
 
 
 class Logging:

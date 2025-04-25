@@ -1,9 +1,9 @@
 import requests
 import os
 
-from src.utils.spark_setup import SparkSetup
-from src.utils.logger import Logging
-from src.interface.extractor import Extractor
+from utils.spark_setup import SparkSetup
+from utils.logger import Logging
+from interface.extractor import Extractor
 
 from pyspark.conf import SparkConf
 from typing_extensions import override

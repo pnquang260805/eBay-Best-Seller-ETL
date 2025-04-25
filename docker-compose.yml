@@ -5,7 +5,7 @@ x-airflow-common:
     context: .
     dockerfile: ./docker/airflow.Dockerfile
     args:
-      AIRFLOW_IMAGE_NAME: ${AIRFLOW_IMAGE_NAME:-apache/airflow:slim-2.10.5}
+      AIRFLOW_IMAGE_NAME: ${AIRFLOW_IMAGE_NAME:-apache/airflow:slim-2.10.5-python3.9}
   environment:
     &airflow-common-env
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
@@ -23,7 +23,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/src:/opt/app/src
     - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/app/minio_data
     - ./docker-data/airflow-data:/opt/airflow
-    - ./app-logs:/opt/app/app-logs
+    - ./app-logs:/opt/airflow/app-logs
   env_file: # Với file .env thì phải sử dụng env_file
     - .env
   user: "${AIRFLOW_UID:-50000}:0"

@@ -9,13 +9,9 @@ class EbayTransform(Transformer):
     def transform(self, data):
         conf = SparkConf().setAppName("Ebay_transform").setMaster("local[2]")
 
-        res = data.json()
-        itemSummaries = res.get("itemSummaries", [])
-
         sparkSetup = SparkSetup(conf)
         spark = sparkSetup.setupSpark()
-        rdd = spark.sparkContext.parallelize(itemSummaries)
-        df = spark.createDataFrame(rdd)
+        df = data
         df = df.drop(
             "additionalImages",
             "itemCreationDate",
