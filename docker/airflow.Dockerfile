@@ -31,4 +31,4 @@ RUN mkdir /opt/spark && \
     curl -fL "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.1/hadoop-aws-3.3.1.jar" --output "/opt/spark/jars/hadoop-aws-3.3.1.jar" && \
     curl -fL "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.2/postgresql-42.7.2.jar" --output "/opt/spark/jars/postgresql-42.7.2.jar"
 
-USER $AIRFLOW_UID
+USER airflow
