@@ -4,7 +4,7 @@ import unittest
 
 from unittest.mock import MagicMock, patch
 from .pyspark_testcases import PySparkTestCase
-from ..extract.ebay_extractor import EbayExtractor
+from extract.ebay_extractor import EbayExtractor
 from pyspark.testing.utils import assertDataFrameEqual
 
 os.environ["PYSPARK_PYTHON"] = sys.executable
