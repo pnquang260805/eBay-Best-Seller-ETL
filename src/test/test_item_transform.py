@@ -17,11 +17,14 @@ class TestTransform(PySparkTestCase):
             StructField("title", StringType(), True),
             StructField("condition", StringType(), True),
             StructField("adultOnly", BooleanType(), True),
-            StructField("itemLocation", StringType(), True)
+            StructField("itemLocation", StringType(), True),
+            StructField("itemOriginDate", StringType(), True),
+            StructField("itemCreationDate", StringType(), True),
         ])
         expected_data = [{"itemId": '1233456',
                           "title": 'Devoted Creations GAME OVER Ultra-Dark Black .FREE SHIPPING!!!! BEST SELLER!!!!',
-                          "condition": 'New', "adultOnly": False, "itemLocation": 'US'}]
+                          "condition": 'New', "adultOnly": False, "itemLocation": 'US',
+                          "itemOriginDate": "2022-10-27T20:42:56.000Z", "itemCreationDate": "2022-10-27T20:42:56.000Z"}]
 
         expected_df = self.spark.createDataFrame(expected_data, schema=schema)
 
@@ -87,8 +90,8 @@ class TestTransform(PySparkTestCase):
             "adultOnly": False,
             "legacyItemId": "ID",
             "availableCoupons": False,
-            "itemOriginDate": "ABC",
-            "itemCreationDate": "ABC",
+            "itemOriginDate": "2022-10-27T20:42:56.000Z",
+            "itemCreationDate": "2022-10-27T20:42:56.000Z",
             "topRatedBuyingExperience": False,
             "priorityListing": False,
             "listingMarketplaceId": "EBAY_US"
