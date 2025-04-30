@@ -2,7 +2,7 @@ import os
 import sys
 import unittest
 
-from transform.ebay.item_transformer import ItemTransform
+from transform.ebay.category_transform import CategoryTransform
 from .pyspark_testcases import PySparkTestCase
 from pyspark.testing.utils import assertDataFrameEqual
 from pyspark.sql.types import StructType, StructField, StringType, BooleanType
@@ -10,25 +10,28 @@ from pyspark.sql.types import StructType, StructField, StringType, BooleanType
 os.environ["PYSPARK_PYTHON"] = sys.executable
 
 
-class TestTransform(PySparkTestCase):
-    def test_transform(self):
+class TestCategoryTransform(PySparkTestCase):
+    def test_category_transform(self):
         schema = StructType([
-            StructField("itemId", StringType(), True),
-            StructField("title", StringType(), True),
-            StructField("condition", StringType(), True),
-            StructField("adultOnly", BooleanType(), True),
-            StructField("itemLocation", StringType(), True),
-            StructField("itemOriginDate", StringType(), True),
-            StructField("itemCreationDate", StringType(), True),
+            StructField("categoryId", StringType(), False),
+            StructField("categoryName", StringType(), False)
         ])
-        expected_data = [{"itemId": '1233456',
-                          "title": 'Devoted Creations GAME OVER Ultra-Dark Black .FREE SHIPPING!!!! BEST SELLER!!!!',
-                          "condition": 'New', "adultOnly": False, "itemLocation": 'US',
-                          "itemOriginDate": "2022-10-27T20:42:56.000Z", "itemCreationDate": "2022-10-27T20:42:56.000Z"}]
 
+        expected_data = [{
+            "categoryId": "31776",
+            "categoryName": "Tanning Lotion"
+            },
+            {
+                "categoryId": "26395",
+                "categoryName": "Health & Beauty"
+            },
+            {
+                "categoryId": "31772",
+                "categoryName": "Sun Protection & Tanning"
+            }]
         expected_df = self.spark.createDataFrame(expected_data, schema=schema)
 
-        raw_data = [{
+        data = [{
             "itemId": "v1|1233456|0",
             "title": "Devoted Creations GAME OVER Ultra-Dark Black .FREE SHIPPING!!!! BEST SELLER!!!!",
             "leafCategoryIds": [
@@ -36,15 +39,15 @@ class TestTransform(PySparkTestCase):
             ],
             "categories": [
                 {
-                    "categoryId": "1",
-                    "categoryName": "Tanning Lotion"
+                "categoryId": "31776",
+                "categoryName": "Tanning Lotion"
                 },
                 {
-                    "categoryId": "2",
+                    "categoryId": "26395",
                     "categoryName": "Health & Beauty"
                 },
                 {
-                    "categoryId": "3",
+                    "categoryId": "31772",
                     "categoryName": "Sun Protection & Tanning"
                 }
             ],
@@ -96,11 +99,9 @@ class TestTransform(PySparkTestCase):
             "priorityListing": False,
             "listingMarketplaceId": "EBAY_US"
         }]
-        raw_df = self.spark.createDataFrame(raw_data)
-        transformer = ItemTransform()
-        transformed_df = transformer.transform(raw_df)
-        assertDataFrameEqual(transformed_df, expected_df)
+        raw_df = self.spark.createDataFrame(data)
+        df = CategoryTransform().transform(raw_df)
+        assertDataFrameEqual(df, expected_df)
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
