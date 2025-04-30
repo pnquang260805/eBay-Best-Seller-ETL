@@ -26,10 +26,6 @@ E-Commerce-ETL/
 |   ├── sql/
 |   ├── test/
 |   └── utils
-|
-├── test/                 # Test suite
-│   ├── unit/            # Unit tests
-│   └── integration/     # Integration tests
 ├── .env                  # Environment configuration
 ├── docker-compose.yml    # Docker services configuration
 └── requirements.txt      # Python dependencies
