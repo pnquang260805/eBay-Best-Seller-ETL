@@ -1,22 +1,38 @@
 # E-COMMERCE ETL PROJECT
 
-This project performs the ETL process by extracting data from the eBay API and a database, transforming it, and loading it into MinIO (S3-compatible storage).
+This project performs the ETL process by extracting data from the eBay API and a database, transforming it, and loading it into Data warehouse.
 
 ## Project Structure
 
 ```
 E-Commerce-ETL/
-├── dags/               # Contains Apache Airflow DAGs
-├── data/               # Directory for storing data
-├── docker/             # Docker configuration
-├── docker-requirements/ # Docker requirements
-├── logs/               # Directory for log files
-├── plugins/            # Custom plugins
-├── src/                # Main source code
-├── test/               # Contains test files
-├── .env                # Environment configuration file
-├── docker-compose.yml  # Docker Compose configuration
-└── requirements.txt     # Required Python libraries
+├── dags/                   # Apache Airflow DAG definitions
+│   └── etl_dag.py         # Main ETL workflow definition
+├── data/
+│   └── mysqlsampledatabase.sql  # Sample database schema
+├── docker/                 # Docker configuration files
+│   └──airflow.Dockerfile # Airflow custom image
+├── docker-requirements/    # Additional Docker dependencies
+├── logs/                  #airflow log
+├── plugins/               # Custom Airflow plugins
+│   ├── operators/        # Custom operators
+│   └── hooks/            # Custom hooks
+├── src/                   # Main source code
+|   ├── interface/
+|   ├── job/
+│   ├── extract/       # Data extraction modules
+│   ├── transform/     # Data transformation logic
+│   ├── load/         # Data loading components
+|   ├── sql/
+|   ├── test/
+|   └── utils
+|
+├── test/                 # Test suite
+│   ├── unit/            # Unit tests
+│   └── integration/     # Integration tests
+├── .env                  # Environment configuration
+├── docker-compose.yml    # Docker services configuration
+└── requirements.txt      # Python dependencies
 ```
 ## System Requirements
 
