@@ -210,17 +210,25 @@ services:
     networks:
       - spark-net
 
-  backend-db:
-    image: mysql:9.2.0
+  data-warehouse:
+    image: postgres:13
+    container_name: dwh
     environment:
-      MYSQL_ROOT_PASSWORD: mysql
-      MYSQL_DATABASE: e_commerce
+      POSTGRES_USER: warehouse
+      POSTGRES_PASSWORD: warehouse
+      POSTGRES_DB: warehouse
     volumes:
-      - ./docker-data/mysql:/var/lib/mysql
-    ports:
-      - "3306:3306"
+      - ./docker-data/data-warehouse-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "warehouse" ]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
     networks:
       - spark-net
+    ports:
+      - "5432:5432"
 
 networks:
   spark-net:
