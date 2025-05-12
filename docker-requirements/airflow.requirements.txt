@@ -6,4 +6,5 @@ apache-airflow-providers-apache-spark
 pyspark==3.3.2
 dotenv
 boto3
-apache-airflow-providers-postgres
+apache-airflow[google]
+google-cloud-bigquery
