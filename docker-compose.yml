@@ -206,6 +206,10 @@ services:
       CLICKHOUSE_USER: "admin"
       CLICKHOUSE_PASSWORD: "26082005qa"
       CLICKHOUSE_DB: "warehouse"
+    networks:
+      - spark-net
+    volumes:
+      - ./docker-data/clickhouse:/var/lib/clickhouse
 
 networks:
   spark-net:
