@@ -17,8 +17,3 @@ if __name__ == "__main__":
     transformer = EbayTransform()
     data = transformer.transform(raw_data)
     print("=========================================================")
-
-    print("\n=====================Loading Data=====================")
-    loader = S3Loader("etl-bucket")
-    loader.load(data)
-    print("=========================================================")

@@ -9,6 +9,7 @@ USER root
 RUN apt-get update -qq && apt-get install vim -qqq && apt-get install -y python3-pip
 
 ENV JAVA_HOME=/home/jdk-11.0.2
+ENV JARS_FOLDER=/opt/spark/jars
 
 ENV PATH="${JAVA_HOME}/bin/:${PATH}"
 
@@ -26,10 +27,8 @@ RUN DOWNLOAD_URL="https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_l
     && java --version
 
 RUN mkdir /opt/spark && \
-    mkdir /opt/spark/jars && \
-    curl -fL "https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.780/aws-java-sdk-bundle-1.12.780.jar" --output "/opt/spark/jars/aws-java-sdk-bundle-1.12.780.jar" && \
-    curl -fL "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.1/hadoop-aws-3.3.1.jar" --output "/opt/spark/jars/hadoop-aws-3.3.1.jar" && \
-    curl -fL "https://repo1.maven.org/maven2/org/postgresql/postgresql/42.7.2/postgresql-42.7.2.jar" --output "/opt/spark/jars/postgresql-42.7.2.jar" && \
-    curl -fL "https://repo1.maven.org/maven2/com/google/cloud/spark/spark-bigquery-with-dependencies_2.13/0.42.0/spark-bigquery-with-dependencies_2.13-0.42.0.jar" --output "/opt/spark/jars/spark-bigquery-with-dependencies_2.13-0.42.0.jar"
-
+    mkdir ${JARS_FOLDER} && \
+    curl -fL "https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.780/aws-java-sdk-bundle-1.12.780.jar" --output "${JARS_FOLDER}/aws-java-sdk-bundle-1.12.780.jar" && \
+    curl -fL "https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.1/hadoop-aws-3.3.1.jar" --output "${JARS_FOLDER}/hadoop-aws-3.3.1.jar" && \
+    curl -fl "https://repo1.maven.org/maven2/com/clickhouse/clickhouse-jdbc/0.5.0/clickhouse-jdbc-0.5.0.jar" --output "${JARS_FOLDER}/clickhouse-jdbc-0.5.0.jar"
 USER airflow
