@@ -45,7 +45,7 @@ E-Commerce-ETL/
 ├── docker-compose.yml      # Docker compose config
 ├── README.md               # Project documentation
 └── requirements.txt        # Python dependencies
-
+```
 ## Installation
 
 1. Clone the repository:
