@@ -1,45 +1,56 @@
 # E-COMMERCE ETL PROJECT
 
-This project performs the ETL process by extracting data from the eBay API and a database, transforming it, and loading it into Data warehouse.
+This project performs ETL (Extract, Transform, Load) by extracting data from the eBay API, transforming it using Apache Spark, and loading it into ClickHouse data warehouse.
+
+## Architecture Overview
+
+- **Extract**: Fetch data from eBay Browse API
+- **Transform**: Process data using Apache Spark
+- **Load**: Store transformed data in ClickHouse
+
+## System Requirements
+
+- Python 3.9.x
+- Docker and Docker Compose
+- Apache Spark 3.x
+- Apache Airflow 2.x
+- ClickHouse
 
 ## Project Structure
 
 ```
 E-Commerce-ETL/
-├── dags/                   # Apache Airflow DAG definitions
-│   └── etl_dag.py         # Main ETL workflow definition
-├── data/
-│   └── mysqlsampledatabase.sql  # Sample database schema
-├── docker/                 # Docker configuration files
-│   └──airflow.Dockerfile # Airflow custom image
-├── docker-requirements/    # Additional Docker dependencies
-├── logs/                  #airflow log
-├── plugins/               # Custom Airflow plugins
-│   ├── operators/        # Custom operators
-│   └── hooks/            # Custom hooks
-├── src/                   # Main source code
-|   ├── interface/
-|   ├── job/
-│   ├── extract/       # Data extraction modules
-│   ├── transform/     # Data transformation logic
-│   ├── load/         # Data loading components
-|   ├── sql/
-|   ├── test/
-|   └── utils
-├── .env                  # Environment configuration
-├── docker-compose.yml    # Docker services configuration
-└── requirements.txt      # Python dependencies
-```
-## System Requirements
-
-- Python 3.9.x
-- Docker and Docker Compose
+├── app-logs/                  # Application log files
+├── dags/                      # Airflow DAG definitions
+├── docker/                    # Docker configurations
+│   └── airflow.Dockerfile     # Airflow container config
+├── docker-data/               # Docker volume data
+├── docker-requirements/       # Docker dependency files
+├── logs/                      # Log files
+├── plugins/                   # Plugin files
+├── src/                      # Source code
+│   ├── __pycache__/         # Python cache
+│   ├── .pytest_cache/       # Test cache
+│   ├── extract/             # Data extraction modules
+│   ├── interface/           # Interface definitions
+│   ├── job/                 # Job definitions
+│   ├── load/                # Data loading modules
+│   ├── sql/                 # SQL queries
+│   ├── test/                # Test files
+│   ├── transform/           # Data transformation logic
+│   └── utils/              # Utility functions
+├── venv/                    # Virtual environment
+├── .env                     # Environment variables
+├── .gitignore              # Git ignore rules
+├── docker-compose.yml      # Docker compose config
+├── README.md               # Project documentation
+└── requirements.txt        # Python dependencies
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-https://github.com/pnquang260805/E-Commerce-ETL.git
+git clone https://github.com/pnquang260805/E-Commerce-ETL.git
 cd ./E-Commerce-ETL
 ```
 
@@ -48,28 +59,58 @@ cd ./E-Commerce-ETL
 pip install -r requirements.txt
 ```
 
-3. Configure the environment: 
-Create a .env file with the following environment variables:
-+ EBAY_TOKEN: Your eBay API token
-+ AIRFLOW_UID: Airflow user ID (default: 50000)
-+ AIRFLOW_GID: Airflow group ID (default: 50000)
-+ _AIRFLOW_WWW_USER_USERNAME: Airflow Web UI username
-+ _AIRFLOW_WWW_USER_PASSWORD: Airflow Web UIpassword
-+ MINIO_ACCESS_KEY: Your MinIO access key
-+ MINIO_SECRET_KEY: Your MinIO secret key
+3. Configure environment variables:
+Create a `.env` file with:
+```
+# eBay API Configuration
+EBAY_TOKEN=your_ebay_api_token
 
-4. Start services using Docker::
+# Airflow Configuration
+AIRFLOW_UID=50000
+AIRFLOW_GID=50000
+_AIRFLOW_WWW_USER_USERNAME=your_username
+_AIRFLOW_WWW_USER_PASSWORD=your_password
+```
+
+4. Start services:
 ```bash
 docker-compose up -d
 ```
 
+## Data Pipeline
+
+1. **Extraction (eBay API)**
+   - Fetches item data from eBay Browse API
+   - Handles API authentication and rate limiting
+   - Returns data as Spark DataFrame
+
+2. **Transformation (Apache Spark)**
+   - Cleans and standardizes data
+   - Performs data type conversions
+   - Creates dimensional models:
+     - Seller dimension
+     - Item dimension
+     - Category dimension
+
+3. **Loading (ClickHouse)**
+   - Loads transformed data into ClickHouse tables
+   - Handles incremental updates
+   - Maintains data consistency
+
 ## Usage
 
-1. Access the Airflow UI:
-- Open your browser and navigate to: `http://localhost:8080`
-- Log in using the username and password from the .env file:: ```_AIRFLOW_WWW_USER_USERNAME``` and ```_AIRFLOW_WWW_USER_PASSWORD```
+1. Access Airflow UI:
+   - URL: `http://localhost:8080`
+   - Login with credentials from `.env`
 
-2. Activate a DAG:
-- Find the DAG you want to run in the list
-- Enable the DAG using the toggle button
-- Run the DAG using the "Trigger DAG" button
+2. Run ETL Pipeline:
+   - Run "create_dwh" trigger
+   - Locate "ebay_dag" in the DAGs list
+   - Enable the DAG
+   - Trigger manually or wait for scheduled run
+
+3. Monitor Progress:
+   - Check task status in Airflow UI
+   - View logs for detailed execution information
+   - Monitor ClickHouse for loaded data
+

@@ -35,14 +35,7 @@ with DAG(
         conn_id="etl_project",
         conf={
             "spark.master": "spark://spark-master:7077",
-            "spark.jars": "/opt/spark/jars/aws-java-sdk-bundle-1.12.780.jar,/opt/spark/jars/hadoop-aws-3.3.1.jar",
-            "spark.hadoop.fs.s3a.access.key": MINIO_ACCESS_KEY,
-            "spark.hadoop.fs.s3a.secret.key": MINIO_SECRET_KEY,
-            "spark.hadoop.fs.s3a.endpoint": "http://minio:9000",
-            "spark.hadoop.fs.s3a.path.style.access": "true",
-            "spark.hadoop.fs.s3a.connection.ssl.enabled": "false",
-            "spark.hadoop.fs.s3a.impl": "org.apache.hadoop.fs.s3a.S3AFileSystem",
-            "spark.hadoop.fs.s3a.aws.credentials.provider": "org.apache.hadoop.fs.s3a.SimpleAWSCredentialsProvider",
+            "spark.jars": "/opt/spark/jars/clickhouse-jdbc-0.7.1.jar, /opt/spark/jars/httpclient5-5.4.4.jar, /opt/spark/jars/httpcore5-5.3.jar, /opt/spark/jars/httpcore5-h2-5.3.jar    "
         },
         verbose=True,
     )
