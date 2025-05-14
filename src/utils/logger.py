@@ -1,10 +1,13 @@
 import logging
 import functools
+from datetime import date
 
 logging.basicConfig(level=logging.DEBUG)
 logging.getLogger("py4j.clientserver").setLevel(logging.WARNING)
 
-LOG_FILE = "app-logs/app.log"
+today = date.today()
+
+LOG_FILE = f"app-logs/{today}.log"
 
 
 class Logging:

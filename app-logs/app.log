@@ -4073,3 +4073,462 @@ Deduplicate [seller#21]
 [2025-05-13 08:23] INFO - transform succeed
 [2025-05-13 08:23] INFO - Calling: load in /opt/app/src/load/jdbc_loader.py, args=(<load.jdbc_loader.JDBCLoader object at 0x7f5786fb3700>, DataFrame[seller_name: string, feedback_percentage: float, feedback_score: int, seller_sk: bigint]), kwargs={}
 [2025-05-13 08:23] INFO - load succeed
+[2025-05-13 08:37] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f453f712fd0>,), kwargs={}
+[2025-05-13 08:37] INFO - extract succeed
+[2025-05-13 08:37] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f453345e6a0>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-13 08:37] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f453345e670>,), kwargs={}
+[2025-05-13 08:37] INFO - read_jdbc succeed
+[2025-05-13 08:37] ERROR - Unsupported join type 'left-anti'. Supported join types include: 'inner', 'outer', 'full', 'fullouter', 'full_outer', 'leftouter', 'left', 'left_outer', 'rightouter', 'right', 'right_outer', 'leftsemi', 'left_semi', 'semi', 'leftanti', 'left_anti', 'anti', 'cross'.
+Traceback (most recent call last):
+  File "/opt/app/src/utils/logger.py", line 46, in wrapper
+    res = func(*args, **kwargs)
+  File "/opt/app/src/transform/ebay/seller_transform.py", line 28, in transform
+    res = df.join(seller_df, on="seller_name", how="left-anti")
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/dataframe.py", line 1539, in join
+    jdf = self._jdf.join(other._jdf, on, how)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1321, in __call__
+    return_value = get_return_value(
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/utils.py", line 196, in deco
+    raise converted from None
+pyspark.sql.utils.IllegalArgumentException: Unsupported join type 'left-anti'. Supported join types include: 'inner', 'outer', 'full', 'fullouter', 'full_outer', 'leftouter', 'left', 'left_outer', 'rightouter', 'right', 'right_outer', 'leftsemi', 'left_semi', 'semi', 'leftanti', 'left_anti', 'anti', 'cross'.
+[2025-05-13 08:37] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f5933e01fd0>,), kwargs={}
+[2025-05-13 08:37] INFO - extract succeed
+[2025-05-13 08:37] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f5927c37310>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-13 08:37] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f5927aad0a0>,), kwargs={}
+[2025-05-13 08:37] INFO - read_jdbc succeed
+[2025-05-13 08:37] ERROR - Unsupported join type 'left-anti'. Supported join types include: 'inner', 'outer', 'full', 'fullouter', 'full_outer', 'leftouter', 'left', 'left_outer', 'rightouter', 'right', 'right_outer', 'leftsemi', 'left_semi', 'semi', 'leftanti', 'left_anti', 'anti', 'cross'.
+Traceback (most recent call last):
+  File "/opt/app/src/utils/logger.py", line 46, in wrapper
+    res = func(*args, **kwargs)
+  File "/opt/app/src/transform/ebay/seller_transform.py", line 28, in transform
+    res = df.join(seller_df, on="seller_name", how="left-anti")
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/dataframe.py", line 1539, in join
+    jdf = self._jdf.join(other._jdf, on, how)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1321, in __call__
+    return_value = get_return_value(
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/utils.py", line 196, in deco
+    raise converted from None
+pyspark.sql.utils.IllegalArgumentException: Unsupported join type 'left-anti'. Supported join types include: 'inner', 'outer', 'full', 'fullouter', 'full_outer', 'leftouter', 'left', 'left_outer', 'rightouter', 'right', 'right_outer', 'leftsemi', 'left_semi', 'semi', 'leftanti', 'left_anti', 'anti', 'cross'.
+[2025-05-13 08:38] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f0144022fd0>,), kwargs={}
+[2025-05-13 08:38] INFO - extract succeed
+[2025-05-13 08:38] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f0137d8e6a0>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-13 08:38] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f0137d8e670>,), kwargs={}
+[2025-05-13 08:38] INFO - read_jdbc succeed
+[2025-05-13 08:38] INFO - transform succeed
+[2025-05-13 08:38] INFO - Calling: load in /opt/app/src/load/jdbc_loader.py, args=(<load.jdbc_loader.JDBCLoader object at 0x7f013443e640>, DataFrame[seller_name: string, seller_sk: bigint, feedback_percentage: float, feedback_score: int]), kwargs={}
+[2025-05-13 08:38] INFO - load succeed
+[2025-05-13 08:40] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f45d9f05fd0>,), kwargs={}
+[2025-05-13 08:40] INFO - extract succeed
+[2025-05-13 08:40] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f45cdc5e6a0>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-13 08:40] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f45cdc5e670>,), kwargs={}
+[2025-05-13 08:40] INFO - read_jdbc succeed
+[2025-05-13 08:40] INFO - transform succeed
+[2025-05-13 08:40] INFO - Calling: load in /opt/app/src/load/jdbc_loader.py, args=(<load.jdbc_loader.JDBCLoader object at 0x7f45c631e640>, DataFrame[seller_name: string, seller_sk: bigint, feedback_percentage: float, feedback_score: int]), kwargs={}
+[2025-05-13 08:40] INFO - load succeed
+[2025-05-13 08:42] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f8d43a89fd0>,), kwargs={}
+[2025-05-13 08:43] INFO - extract succeed
+[2025-05-13 08:43] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f8d377ec6a0>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-13 08:43] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f8d377ec670>,), kwargs={}
+[2025-05-13 08:43] INFO - read_jdbc succeed
+[2025-05-13 08:43] ERROR - Unsupported join type 'right_anti'. Supported join types include: 'inner', 'outer', 'full', 'fullouter', 'full_outer', 'leftouter', 'left', 'left_outer', 'rightouter', 'right', 'right_outer', 'leftsemi', 'left_semi', 'semi', 'leftanti', 'left_anti', 'anti', 'cross'.
+Traceback (most recent call last):
+  File "/opt/app/src/utils/logger.py", line 46, in wrapper
+    res = func(*args, **kwargs)
+  File "/opt/app/src/transform/ebay/seller_transform.py", line 28, in transform
+    res = df.join(seller_df, on="seller_name", how="right_anti")
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/dataframe.py", line 1539, in join
+    jdf = self._jdf.join(other._jdf, on, how)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1321, in __call__
+    return_value = get_return_value(
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/utils.py", line 196, in deco
+    raise converted from None
+pyspark.sql.utils.IllegalArgumentException: Unsupported join type 'right_anti'. Supported join types include: 'inner', 'outer', 'full', 'fullouter', 'full_outer', 'leftouter', 'left', 'left_outer', 'rightouter', 'right', 'right_outer', 'leftsemi', 'left_semi', 'semi', 'leftanti', 'left_anti', 'anti', 'cross'.
+[2025-05-13 08:43] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7fba4fec0fd0>,), kwargs={}
+[2025-05-13 08:43] INFO - extract succeed
+[2025-05-13 08:43] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7fba43ce1310>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-13 08:43] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7fba43b570a0>,), kwargs={}
+[2025-05-13 08:43] INFO - read_jdbc succeed
+[2025-05-13 08:43] ERROR - Unsupported join type 'right_anti'. Supported join types include: 'inner', 'outer', 'full', 'fullouter', 'full_outer', 'leftouter', 'left', 'left_outer', 'rightouter', 'right', 'right_outer', 'leftsemi', 'left_semi', 'semi', 'leftanti', 'left_anti', 'anti', 'cross'.
+Traceback (most recent call last):
+  File "/opt/app/src/utils/logger.py", line 46, in wrapper
+    res = func(*args, **kwargs)
+  File "/opt/app/src/transform/ebay/seller_transform.py", line 28, in transform
+    res = df.join(seller_df, on="seller_name", how="right_anti")
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/dataframe.py", line 1539, in join
+    jdf = self._jdf.join(other._jdf, on, how)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1321, in __call__
+    return_value = get_return_value(
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/utils.py", line 196, in deco
+    raise converted from None
+pyspark.sql.utils.IllegalArgumentException: Unsupported join type 'right_anti'. Supported join types include: 'inner', 'outer', 'full', 'fullouter', 'full_outer', 'leftouter', 'left', 'left_outer', 'rightouter', 'right', 'right_outer', 'leftsemi', 'left_semi', 'semi', 'leftanti', 'left_anti', 'anti', 'cross'.
+[2025-05-13 08:44] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f5944805fd0>,), kwargs={}
+[2025-05-13 08:44] INFO - extract succeed
+[2025-05-13 08:44] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f59385826a0>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-13 08:44] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f59385827f0>,), kwargs={}
+[2025-05-13 08:44] INFO - read_jdbc succeed
+[2025-05-13 08:44] INFO - transform succeed
+[2025-05-13 08:44] INFO - Calling: load in /opt/app/src/load/jdbc_loader.py, args=(<load.jdbc_loader.JDBCLoader object at 0x7f5934c1f640>, DataFrame[seller_name: string, feedback_percentage: float, feedback_score: int, seller_sk: bigint]), kwargs={}
+[2025-05-13 08:44] INFO - load succeed
+[2025-05-13 08:44] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7fd3081ddfd0>,), kwargs={}
+[2025-05-13 08:44] INFO - extract succeed
+[2025-05-13 08:44] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7fd2fc003310>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-13 08:44] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7fd2fbe790a0>,), kwargs={}
+[2025-05-13 08:44] INFO - read_jdbc succeed
+[2025-05-13 08:44] INFO - transform succeed
+[2025-05-13 08:44] INFO - Calling: load in /opt/app/src/load/jdbc_loader.py, args=(<load.jdbc_loader.JDBCLoader object at 0x7fd2f85f6640>, DataFrame[seller_name: string, feedback_percentage: float, feedback_score: int, seller_sk: bigint]), kwargs={}
+[2025-05-13 08:44] INFO - load succeed
+[2025-05-14 09:37] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f7aba2edfd0>,), kwargs={}
+[2025-05-14 09:37] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f88bb3b3fd0>,), kwargs={}
+[2025-05-14 09:37] INFO - extract succeed
+[2025-05-14 09:37] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f7aae100040>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemGroupHref: string, itemGroupType: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:37] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f7aae100a60>,), kwargs={}
+[2025-05-14 09:37] INFO - extract succeed
+[2025-05-14 09:37] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f88af1c0040>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemGroupHref: string, itemGroupType: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:37] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f88af1c0a60>,), kwargs={}
+[2025-05-14 09:37] INFO - read_jdbc succeed
+[2025-05-14 09:37] INFO - read_jdbc succeed
+[2025-05-14 09:37] INFO - transform succeed
+[2025-05-14 09:37] INFO - transform succeed
+[2025-05-14 09:37] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f88a77dc040>,), kwargs={}
+[2025-05-14 09:37] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f7aa6722040>,), kwargs={}
+[2025-05-14 09:37] INFO - read_jdbc succeed
+[2025-05-14 09:37] INFO - read_jdbc succeed
+[2025-05-14 09:37] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7fd329d6bfd0>,), kwargs={}
+[2025-05-14 09:37] INFO - extract succeed
+[2025-05-14 09:37] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7fd31da21e80>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemGroupHref: string, itemGroupType: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:37] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7fd31da21fd0>,), kwargs={}
+[2025-05-14 09:37] INFO - read_jdbc succeed
+[2025-05-14 09:37] INFO - transform succeed
+[2025-05-14 09:38] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7fd316195040>,), kwargs={}
+[2025-05-14 09:38] INFO - read_jdbc succeed
+[2025-05-14 09:38] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f0c158a8fd0>,), kwargs={}
+[2025-05-14 09:38] INFO - extract succeed
+[2025-05-14 09:38] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f0c0969b190>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemGroupHref: string, itemGroupType: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:38] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f0c09709700>,), kwargs={}
+[2025-05-14 09:39] INFO - read_jdbc succeed
+[2025-05-14 09:39] INFO - transform succeed
+[2025-05-14 09:39] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f0c082a2040>,), kwargs={}
+[2025-05-14 09:39] INFO - read_jdbc succeed
+[2025-05-14 09:40] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7fc8c2365fd0>,), kwargs={}
+[2025-05-14 09:40] INFO - extract succeed
+[2025-05-14 09:40] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7fc8b615b190>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemGroupHref: string, itemGroupType: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:40] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7fc8b61c9700>,), kwargs={}
+[2025-05-14 09:40] INFO - read_jdbc succeed
+[2025-05-14 09:40] INFO - transform succeed
+[2025-05-14 09:40] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7fc8ae79b040>,), kwargs={}
+[2025-05-14 09:40] INFO - read_jdbc succeed
+[2025-05-14 09:42] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f795df1bfd0>,), kwargs={}
+[2025-05-14 09:42] INFO - extract succeed
+[2025-05-14 09:42] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f7951d1b190>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, marketingPrice: map<string,map<string,string>>, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:42] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f7951d89700>,), kwargs={}
+[2025-05-14 09:42] INFO - read_jdbc succeed
+[2025-05-14 09:42] INFO - transform succeed
+[2025-05-14 09:42] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f794a34a0a0>,), kwargs={}
+[2025-05-14 09:42] INFO - read_jdbc succeed
+[2025-05-14 09:43] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f0c99136fd0>,), kwargs={}
+[2025-05-14 09:43] INFO - extract succeed
+[2025-05-14 09:43] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f0c8cde1e80>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemGroupHref: string, itemGroupType: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:43] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f0c8cde1fd0>,), kwargs={}
+[2025-05-14 09:43] INFO - read_jdbc succeed
+[2025-05-14 09:43] INFO - transform succeed
+[2025-05-14 09:43] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f0c85571040>,), kwargs={}
+[2025-05-14 09:43] INFO - read_jdbc succeed
+[2025-05-14 09:44] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f9322db2fd0>,), kwargs={}
+[2025-05-14 09:44] INFO - extract succeed
+[2025-05-14 09:44] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f9316a61e80>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, marketingPrice: map<string,map<string,string>>, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:44] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f9316a61fd0>,), kwargs={}
+[2025-05-14 09:44] INFO - read_jdbc succeed
+[2025-05-14 09:44] INFO - transform succeed
+[2025-05-14 09:44] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f930f1e40a0>,), kwargs={}
+[2025-05-14 09:44] INFO - read_jdbc succeed
+[2025-05-14 09:45] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f8383e0dfd0>,), kwargs={}
+[2025-05-14 09:46] INFO - extract succeed
+[2025-05-14 09:46] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f8377c0b190>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, marketingPrice: map<string,map<string,string>>, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:46] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f8377c79700>,), kwargs={}
+[2025-05-14 09:46] INFO - read_jdbc succeed
+[2025-05-14 09:46] INFO - transform succeed
+[2025-05-14 09:46] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f83768160a0>,), kwargs={}
+[2025-05-14 09:46] INFO - read_jdbc succeed
+[2025-05-14 09:46] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7efd18294fd0>,), kwargs={}
+[2025-05-14 09:46] INFO - extract succeed
+[2025-05-14 09:46] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7efd0bf2fe80>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, marketingPrice: map<string,map<string,string>>, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:46] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7efd0bf2ffd0>,), kwargs={}
+[2025-05-14 09:46] INFO - read_jdbc succeed
+[2025-05-14 09:46] INFO - transform succeed
+[2025-05-14 09:46] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7efd086c70a0>,), kwargs={}
+[2025-05-14 09:46] INFO - read_jdbc succeed
+[2025-05-14 09:50] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f58fefc3fd0>,), kwargs={}
+[2025-05-14 09:50] INFO - extract succeed
+[2025-05-14 09:50] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f58f2d9b190>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, marketingPrice: map<string,map<string,string>>, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:50] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f58f2e09700>,), kwargs={}
+[2025-05-14 09:50] INFO - read_jdbc succeed
+[2025-05-14 09:50] INFO - transform succeed
+[2025-05-14 09:50] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f58eb3ed0a0>,), kwargs={}
+[2025-05-14 09:50] INFO - read_jdbc succeed
+[2025-05-14 09:51] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7fe39af10fd0>,), kwargs={}
+[2025-05-14 09:51] INFO - extract succeed
+[2025-05-14 09:51] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7fe38eba1e80>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, marketingPrice: map<string,map<string,string>>, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:51] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7fe38eba1940>,), kwargs={}
+[2025-05-14 09:51] INFO - read_jdbc succeed
+[2025-05-14 09:51] INFO - transform succeed
+[2025-05-14 09:51] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7fe38d8e50a0>,), kwargs={}
+[2025-05-14 09:51] INFO - read_jdbc succeed
+[2025-05-14 09:52] INFO - Calling: extract in /opt/app/src/extract/ebay_extractor.py, args=(<extract.ebay_extractor.EbayExtractor object at 0x7f4c49368fd0>,), kwargs={}
+[2025-05-14 09:52] INFO - extract succeed
+[2025-05-14 09:52] INFO - Calling: transform in /opt/app/src/transform/ebay/seller_transform.py, args=(<transform.ebay.seller_transform.SellerTransform object at 0x7f4c3d15b190>, DataFrame[additionalImages: array<map<string,string>>, adultOnly: boolean, availableCoupons: boolean, buyingOptions: array<string>, categories: array<map<string,string>>, condition: string, conditionId: string, image: map<string,string>, itemCreationDate: string, itemHref: string, itemId: string, itemLocation: map<string,string>, itemOriginDate: string, itemWebUrl: string, leafCategoryIds: array<string>, legacyItemId: string, listingMarketplaceId: string, marketingPrice: map<string,map<string,string>>, price: map<string,string>, priorityListing: boolean, seller: map<string,string>, shippingOptions: array<map<string,string>>, thumbnailImages: array<map<string,string>>, title: string, topRatedBuyingExperience: boolean]), kwargs={}
+[2025-05-14 09:52] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f4c3d1c9700>,), kwargs={}
+[2025-05-14 09:52] INFO - read_jdbc succeed
+[2025-05-14 09:52] INFO - transform succeed
+[2025-05-14 09:52] INFO - Calling: read_jdbc in /opt/app/src/utils/read_jdbc.py, args=(<utils.read_jdbc.ReadJDBC object at 0x7f4c3c5660a0>,), kwargs={}
+[2025-05-14 09:52] INFO - read_jdbc succeed
+[2025-05-14 09:52] INFO - Calling: load in /opt/app/src/load/jdbc_loader.py, args=(<load.jdbc_loader.JDBCLoader object at 0x7f4c3d15bfd0>, DataFrame[seller_name: string, feedback_percentage: float, feedback_score: int, seller_sk: bigint]), kwargs={}
+[2025-05-14 09:52] INFO - load succeed
+[2025-05-14 09:52] INFO - Calling: load in /opt/app/src/load/jdbc_loader.py, args=(<load.jdbc_loader.JDBCLoader object at 0x7f4c35786700>, DataFrame[item_id: string, title: string, condition: string, adult_only: boolean, item_location: string, item_origin_date: string, item_creation_date: string, item_sk: bigint]), kwargs={}
+[2025-05-14 09:52] ERROR - An error occurred while calling o244.save.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 32.0 failed 1 times, most recent failure: Lost task 0.0 in stage 32.0 (TID 24) (b555cde5220b executor driver): java.time.format.DateTimeParseException: Text '2020-03-11T18:20:51.000Z' could not be parsed, unparsed text found at index 10
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2049)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:1948)
+	at java.base/java.time.LocalDate.parse(LocalDate.java:428)
+	at com.clickhouse.data.value.ClickHouseDateValue.update(ClickHouseDateValue.java:260)
+	at com.clickhouse.data.value.ClickHouseDateValue.update(ClickHouseDateValue.java:15)
+	at com.clickhouse.jdbc.internal.InputBasedPreparedStatement.setString(InputBasedPreparedStatement.java:277)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$makeSetter$8(JdbcUtils.scala:570)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$makeSetter$8$adapted(JdbcUtils.scala:569)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.savePartition(JdbcUtils.scala:700)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$saveTable$1(JdbcUtils.scala:868)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$saveTable$1$adapted(JdbcUtils.scala:867)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$2(RDD.scala:1011)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$2$adapted(RDD.scala:1011)
+	at org.apache.spark.SparkContext.$anonfun$runJob$5(SparkContext.scala:2278)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2672)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2608)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2607)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2607)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1182)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:2860)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2802)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2791)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:952)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2238)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2259)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2278)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2303)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$1(RDD.scala:1011)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:406)
+	at org.apache.spark.rdd.RDD.foreachPartition(RDD.scala:1009)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.saveTable(JdbcUtils.scala:867)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcRelationProvider.createRelation(JdbcRelationProvider.scala:70)
+	at org.apache.spark.sql.execution.datasources.SaveIntoDataSourceCommand.run(SaveIntoDataSourceCommand.scala:47)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:75)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:73)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.executeCollect(commands.scala:84)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:98)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:109)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:169)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:95)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:779)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:64)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:94)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:584)
+	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:176)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:584)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:560)
+	at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:94)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:81)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:79)
+	at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:116)
+	at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:860)
+	at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:390)
+	at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:363)
+	at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:247)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.time.format.DateTimeParseException: Text '2020-03-11T18:20:51.000Z' could not be parsed, unparsed text found at index 10
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2049)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:1948)
+	at java.base/java.time.LocalDate.parse(LocalDate.java:428)
+	at com.clickhouse.data.value.ClickHouseDateValue.update(ClickHouseDateValue.java:260)
+	at com.clickhouse.data.value.ClickHouseDateValue.update(ClickHouseDateValue.java:15)
+	at com.clickhouse.jdbc.internal.InputBasedPreparedStatement.setString(InputBasedPreparedStatement.java:277)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$makeSetter$8(JdbcUtils.scala:570)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$makeSetter$8$adapted(JdbcUtils.scala:569)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.savePartition(JdbcUtils.scala:700)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$saveTable$1(JdbcUtils.scala:868)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$saveTable$1$adapted(JdbcUtils.scala:867)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$2(RDD.scala:1011)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$2$adapted(RDD.scala:1011)
+	at org.apache.spark.SparkContext.$anonfun$runJob$5(SparkContext.scala:2278)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	... 1 more
+Traceback (most recent call last):
+  File "/opt/app/src/utils/logger.py", line 46, in wrapper
+    res = func(*args, **kwargs)
+  File "/opt/app/src/load/jdbc_loader.py", line 23, in load
+    data.write \
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/readwriter.py", line 966, in save
+    self._jwrite.save()
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/py4j-0.10.9.5-src.zip/py4j/java_gateway.py", line 1321, in __call__
+    return_value = get_return_value(
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/pyspark.zip/pyspark/sql/utils.py", line 190, in deco
+    return f(*a, **kw)
+  File "/home/airflow/.local/lib/python3.9/site-packages/pyspark/python/lib/py4j-0.10.9.5-src.zip/py4j/protocol.py", line 326, in get_return_value
+    raise Py4JJavaError(
+py4j.protocol.Py4JJavaError: An error occurred while calling o244.save.
+: org.apache.spark.SparkException: Job aborted due to stage failure: Task 0 in stage 32.0 failed 1 times, most recent failure: Lost task 0.0 in stage 32.0 (TID 24) (b555cde5220b executor driver): java.time.format.DateTimeParseException: Text '2020-03-11T18:20:51.000Z' could not be parsed, unparsed text found at index 10
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2049)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:1948)
+	at java.base/java.time.LocalDate.parse(LocalDate.java:428)
+	at com.clickhouse.data.value.ClickHouseDateValue.update(ClickHouseDateValue.java:260)
+	at com.clickhouse.data.value.ClickHouseDateValue.update(ClickHouseDateValue.java:15)
+	at com.clickhouse.jdbc.internal.InputBasedPreparedStatement.setString(InputBasedPreparedStatement.java:277)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$makeSetter$8(JdbcUtils.scala:570)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$makeSetter$8$adapted(JdbcUtils.scala:569)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.savePartition(JdbcUtils.scala:700)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$saveTable$1(JdbcUtils.scala:868)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$saveTable$1$adapted(JdbcUtils.scala:867)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$2(RDD.scala:1011)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$2$adapted(RDD.scala:1011)
+	at org.apache.spark.SparkContext.$anonfun$runJob$5(SparkContext.scala:2278)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Driver stacktrace:
+	at org.apache.spark.scheduler.DAGScheduler.failJobAndIndependentStages(DAGScheduler.scala:2672)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2(DAGScheduler.scala:2608)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$abortStage$2$adapted(DAGScheduler.scala:2607)
+	at scala.collection.mutable.ResizableArray.foreach(ResizableArray.scala:62)
+	at scala.collection.mutable.ResizableArray.foreach$(ResizableArray.scala:55)
+	at scala.collection.mutable.ArrayBuffer.foreach(ArrayBuffer.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.abortStage(DAGScheduler.scala:2607)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGScheduler.$anonfun$handleTaskSetFailed$1$adapted(DAGScheduler.scala:1182)
+	at scala.Option.foreach(Option.scala:407)
+	at org.apache.spark.scheduler.DAGScheduler.handleTaskSetFailed(DAGScheduler.scala:1182)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.doOnReceive(DAGScheduler.scala:2860)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2802)
+	at org.apache.spark.scheduler.DAGSchedulerEventProcessLoop.onReceive(DAGScheduler.scala:2791)
+	at org.apache.spark.util.EventLoop$$anon$1.run(EventLoop.scala:49)
+	at org.apache.spark.scheduler.DAGScheduler.runJob(DAGScheduler.scala:952)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2238)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2259)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2278)
+	at org.apache.spark.SparkContext.runJob(SparkContext.scala:2303)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$1(RDD.scala:1011)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)
+	at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:112)
+	at org.apache.spark.rdd.RDD.withScope(RDD.scala:406)
+	at org.apache.spark.rdd.RDD.foreachPartition(RDD.scala:1009)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.saveTable(JdbcUtils.scala:867)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcRelationProvider.createRelation(JdbcRelationProvider.scala:70)
+	at org.apache.spark.sql.execution.datasources.SaveIntoDataSourceCommand.run(SaveIntoDataSourceCommand.scala:47)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:75)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:73)
+	at org.apache.spark.sql.execution.command.ExecutedCommandExec.executeCollect(commands.scala:84)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.$anonfun$applyOrElse$1(QueryExecution.scala:98)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$6(SQLExecution.scala:109)
+	at org.apache.spark.sql.execution.SQLExecution$.withSQLConfPropagated(SQLExecution.scala:169)
+	at org.apache.spark.sql.execution.SQLExecution$.$anonfun$withNewExecutionId$1(SQLExecution.scala:95)
+	at org.apache.spark.sql.SparkSession.withActive(SparkSession.scala:779)
+	at org.apache.spark.sql.execution.SQLExecution$.withNewExecutionId(SQLExecution.scala:64)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:98)
+	at org.apache.spark.sql.execution.QueryExecution$$anonfun$eagerlyExecuteCommands$1.applyOrElse(QueryExecution.scala:94)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.$anonfun$transformDownWithPruning$1(TreeNode.scala:584)
+	at org.apache.spark.sql.catalyst.trees.CurrentOrigin$.withOrigin(TreeNode.scala:176)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDownWithPruning(TreeNode.scala:584)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.org$apache$spark$sql$catalyst$plans$logical$AnalysisHelper$$super$transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning(AnalysisHelper.scala:267)
+	at org.apache.spark.sql.catalyst.plans.logical.AnalysisHelper.transformDownWithPruning$(AnalysisHelper.scala:263)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.plans.logical.LogicalPlan.transformDownWithPruning(LogicalPlan.scala:30)
+	at org.apache.spark.sql.catalyst.trees.TreeNode.transformDown(TreeNode.scala:560)
+	at org.apache.spark.sql.execution.QueryExecution.eagerlyExecuteCommands(QueryExecution.scala:94)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted$lzycompute(QueryExecution.scala:81)
+	at org.apache.spark.sql.execution.QueryExecution.commandExecuted(QueryExecution.scala:79)
+	at org.apache.spark.sql.execution.QueryExecution.assertCommandExecuted(QueryExecution.scala:116)
+	at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:860)
+	at org.apache.spark.sql.DataFrameWriter.saveToV1Source(DataFrameWriter.scala:390)
+	at org.apache.spark.sql.DataFrameWriter.saveInternal(DataFrameWriter.scala:363)
+	at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:247)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.time.format.DateTimeParseException: Text '2020-03-11T18:20:51.000Z' could not be parsed, unparsed text found at index 10
+	at java.base/java.time.format.DateTimeFormatter.parseResolved0(DateTimeFormatter.java:2049)
+	at java.base/java.time.format.DateTimeFormatter.parse(DateTimeFormatter.java:1948)
+	at java.base/java.time.LocalDate.parse(LocalDate.java:428)
+	at com.clickhouse.data.value.ClickHouseDateValue.update(ClickHouseDateValue.java:260)
+	at com.clickhouse.data.value.ClickHouseDateValue.update(ClickHouseDateValue.java:15)
+	at com.clickhouse.jdbc.internal.InputBasedPreparedStatement.setString(InputBasedPreparedStatement.java:277)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$makeSetter$8(JdbcUtils.scala:570)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$makeSetter$8$adapted(JdbcUtils.scala:569)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.savePartition(JdbcUtils.scala:700)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$saveTable$1(JdbcUtils.scala:868)
+	at org.apache.spark.sql.execution.datasources.jdbc.JdbcUtils$.$anonfun$saveTable$1$adapted(JdbcUtils.scala:867)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$2(RDD.scala:1011)
+	at org.apache.spark.rdd.RDD.$anonfun$foreachPartition$2$adapted(RDD.scala:1011)
+	at org.apache.spark.SparkContext.$anonfun$runJob$5(SparkContext.scala:2278)
+	at org.apache.spark.scheduler.ResultTask.runTask(ResultTask.scala:90)
+	at org.apache.spark.scheduler.Task.run(Task.scala:136)
+	at org.apache.spark.executor.Executor$TaskRunner.$anonfun$run$3(Executor.scala:548)
+	at org.apache.spark.util.Utils$.tryWithSafeFinally(Utils.scala:1504)
+	at org.apache.spark.executor.Executor$TaskRunner.run(Executor.scala:551)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	... 1 more
+
