@@ -8,5 +8,6 @@ __pycache__
 *.ipynb
 docker-data/
 *.json
-/src/app-logs
+/src/transform/ebay/app-logs
 /app-logs
+/**/**/app-logs

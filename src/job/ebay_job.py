@@ -11,6 +11,7 @@ from transform.ebay.seller_transform import SellerTransform
 from transform.ebay.item_transformer import ItemTransform
 from transform.ebay.category_transform import CategoryTransform
 from transform.dim_date import DimDateCreation
+from transform.ebay.item_category_bridge import ItemCategory
 from load.jdbc_loader import JDBCLoader
 
 if __name__ == "__main__":
@@ -20,15 +21,15 @@ if __name__ == "__main__":
     print("=========================================================")
     print("\n=====================Transforming Data=====================")
     seller_transform = SellerTransform().transform(raw_data)
-    seller_transform.show(5)
 
     item_transform = ItemTransform().transform(raw_data)
-    item_transform.show(5)
 
     category_transform = CategoryTransform().transform(raw_data)
-    category_transform.show(5, truncate=False)
 
     date_creation = DimDateCreation().create_dim_date()
+
+    bridge = ItemCategory().transform(raw_data)
+
     print("=========================================================")
     print("\n=====================Load Data=====================")
     user = "admin"
@@ -47,3 +48,6 @@ if __name__ == "__main__":
 
     date_loader = JDBCLoader(user=user, password=password, driver=driver, table="dim_date", url=url)
     date_loader.load(date_creation)
+
+    bridge_loader = JDBCLoader(user=user, password=password, driver=driver, table="bridge_item_category", url=url)
+    bridge_loader.load(bridge)

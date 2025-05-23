@@ -54,7 +54,12 @@ with DAG(
         python_callable=run_sql_file,
         op_kwargs={"filename":"create_fact"}
     )
+    create_bridge = PythonOperator(
+        task_id="bridge_creation",
+        python_callable=run_sql_file,
+        op_kwargs={"filename":"create_bridge"}
+    )
 
-    [create_fact, create_dim_category, create_dim_item, create_dim_seller, create_dim_date]
+    [create_fact, create_dim_category, create_dim_item, create_dim_seller, create_dim_date, create_bridge]
 
 
