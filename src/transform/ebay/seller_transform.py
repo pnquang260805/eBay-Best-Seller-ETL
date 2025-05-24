@@ -13,7 +13,7 @@ class SellerTransform(Transformer):
         password = "26082005qa"
         table = "dim_seller"
 
-        df = ReadJDBC(username, password, table).read_jdbc()
+        df = ReadJDBC(username, password).read_jdbc(table)
         lastest_sk = df.select(max(col("seller_sk"))).collect()[0][0]
         if lastest_sk is None:
             lastest_sk = 0

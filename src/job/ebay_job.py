@@ -12,42 +12,30 @@ from transform.ebay.item_transformer import ItemTransform
 from transform.ebay.category_transform import CategoryTransform
 from transform.dim_date import DimDateCreation
 from transform.ebay.item_category_bridge import ItemCategory
+from transform.ebay.fact import FactTransform
 from load.jdbc_loader import JDBCLoader
 
 if __name__ == "__main__":
-    print("=====================Extracting Data=====================")
     extractor = EbayExtractor()
     raw_data = extractor.extract()
-    print("=========================================================")
-    print("\n=====================Transforming Data=====================")
+
     seller_transform = SellerTransform().transform(raw_data)
-
     item_transform = ItemTransform().transform(raw_data)
-
     category_transform = CategoryTransform().transform(raw_data)
-
     date_creation = DimDateCreation().create_dim_date()
-
     bridge = ItemCategory().transform(raw_data)
+    fact_df = FactTransform().transform(raw_data)
 
-    print("=========================================================")
-    print("\n=====================Load Data=====================")
     user = "admin"
     password = "26082005qa"
     driver = "com.clickhouse.jdbc.ClickHouseDriver"
     url = "jdbc:ch://clickhouse:8123/warehouse"
 
-    seller_loader = JDBCLoader(user=user, password=password, driver=driver, table="dim_seller", url=url)
-    seller_loader.load(seller_transform)
+    loader = JDBCLoader(user=user, password=password, driver=driver, url=url)
 
-    item_loader = JDBCLoader(user=user, password=password, driver=driver, table="dim_item", url=url)
-    item_loader.load(item_transform)
-
-    category_loader = JDBCLoader(user=user, password=password, driver=driver, table="dim_category", url=url)
-    category_loader.load(category_transform)
-
-    date_loader = JDBCLoader(user=user, password=password, driver=driver, table="dim_date", url=url)
-    date_loader.load(date_creation)
-
-    bridge_loader = JDBCLoader(user=user, password=password, driver=driver, table="bridge_item_category", url=url)
-    bridge_loader.load(bridge)
+    loader.load("dim_seller",seller_transform)
+    loader.load("dim_item", item_transform)
+    loader.load("dim_category",category_transform)
+    loader.load("dim_date", date_creation)
+    loader.load("bridge_item_category", bridge)
+    loader.load("eBay_best_seller_fact", fact_df)

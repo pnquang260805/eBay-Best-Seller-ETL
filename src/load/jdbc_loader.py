@@ -13,17 +13,16 @@ class JDBCLoader(Loader):
             "driver": kwargs.get("driver"),
             "jdbcCompliant": "false"
         }
-        self.table = kwargs.get("table")
         self.url = kwargs.get("url")
 
     @logger.log
-    def load(self, data):
+    def load(self, table, data):
         conf = SparkConf().setAppName("Load_to_Warehouse").setMaster("local[2]")
         spark = SparkSetup(conf).setupSpark()
         data.write \
             .format("jdbc") \
             .option("url", self.url) \
-            .option("dbtable", self.table) \
+            .option("dbtable", table) \
             .option("user", self.properties["user"]) \
             .option("password", self.properties["password"]) \
             .option("driver", self.properties["driver"]) \

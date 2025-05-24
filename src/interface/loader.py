@@ -3,5 +3,5 @@ from abc import ABC, abstractmethod
 
 class Loader(ABC):
     @abstractmethod
-    def load(self, data):
+    def load(self, table, data):
         pass

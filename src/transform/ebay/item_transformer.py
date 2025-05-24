@@ -18,8 +18,8 @@ class ItemTransform(Transformer):
         password = "26082005qa"
         table = "dim_item"
 
-        reader = ReadJDBC(username, password, table)
-        df = reader.read_jdbc()
+        reader = ReadJDBC(username, password)
+        df = reader.read_jdbc(table)
         df = df.select("item_sk","item_id")
 
         lastest_sk = df.select(max(col("item_sk"))).collect()[0][0]

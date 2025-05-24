@@ -14,9 +14,9 @@ class ItemCategory(Transformer):
         item_table = "dim_item"
         bridge_table = "bridge_item_category"
 
-        category_df = ReadJDBC(username, password, category_table).read_jdbc()
-        item_df = ReadJDBC(username, password, item_table).read_jdbc()
-        jdbc_bridge_df = ReadJDBC(username, password, bridge_table).read_jdbc()
+        category_df = ReadJDBC(username, password).read_jdbc(category_table)
+        item_df = ReadJDBC(username, password ).read_jdbc(item_table)
+        jdbc_bridge_df = ReadJDBC(username, password, ).read_jdbc(bridge_table)
 
         category_df = category_df.select("category_sk", "category_id")
         item_df = item_df.select("item_sk", "item_id")

@@ -17,8 +17,8 @@ class CategoryTransform(Transformer):
         password = "26082005qa"
         table = "dim_category"
 
-        reader = ReadJDBC(username, password, table)
-        df = reader.read_jdbc()
+        reader = ReadJDBC(username, password)
+        df = reader.read_jdbc(table)
         lastest_sk = df.select(max(col("category_sk"))).collect()[0][0]
         df = df.select("category_id")
         if lastest_sk is None:
