@@ -91,6 +91,9 @@ docker-compose up -d
      - Seller dimension
      - Item dimension
      - Category dimension
+     - Item Category bridge
+     - Date dimension
+     - Best seller fact
 
 3. **Loading (ClickHouse)**
    - Loads transformed data into ClickHouse tables
