@@ -1,4 +1,4 @@
-# E-COMMERCE ETL PROJECT
+# eBay BEST SELLER ETL PROJECT
 
 This project performs ETL (Extract, Transform, Load) by extracting data from the eBay API, transforming it using Apache Spark, and loading it into ClickHouse data warehouse.
 
